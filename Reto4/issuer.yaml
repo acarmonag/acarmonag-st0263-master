@@ -1,0 +1,18 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-staging
+spec:
+  acme:
+    # URL del servidor ACME
+    server: https://acme-staging-v02.api.letsencrypt.org/directory
+    # Correo electrónico utilizado para la recuperación de la cuenta ACME y notificaciones
+    email: tu-email@example.com
+    # Nombre de un recurso Secret que se utilizará para almacenar la cuenta ACME privada
+    privateKeySecretRef:
+      name: letsencrypt-staging
+    # Permitir que Cert-Manager cree y administre una nueva cuenta ACME
+    solvers:
+    - http01:
+        ingress:
+          class: nginx

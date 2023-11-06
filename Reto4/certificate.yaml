@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: reto4-certificate
+spec:
+  secretName: reto4-tls
+  issuerRef:
+    name: letsencrypt-staging
+    kind: ClusterIssuer
+  commonName: reto4.dominio.tld
+  dnsNames:
+  - reto4.dominio.tld

@@ -1,0 +1,27 @@
+// Definición de la sintaxis de Protocol Buffers versión 3
+syntax = "proto3";
+
+// Definición del mensaje Product
+message Archive {
+    string busqueda = 1; // Nombre del producto
+}
+
+// Definición del mensaje TransactionResponse
+message singleTransactionResponse {
+    string nombre = 1;
+    string last_updated = 2;
+    double size = 3;
+}
+
+message multipleTransactionResponse {
+    repeated singleTransactionResponse files = 1;
+}
+
+// Definición del servicio ProductService
+service ProductService {
+    rpc SearchProduct(Archive) returns (stream multipleTransactionResponse);
+    rpc ListProducts(Empty) returns (stream multipleTransactionResponse);
+}
+
+message Empty {}
+
